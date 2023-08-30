@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        display: flex;
+        height: 100vh;
+        width: 100vw;
+        overflow: hidden;
+        justify-content: center;
+        align-items: center;
+      }
+
+      #container {
+        border: 1px solid black;
+        display: flex;
+        height: 600px;
+        width: 600px;
+      }
+
+      .sprite {
+        position: absolute;
+        height: 170px;
+        width: 157px;
+        background-image: url("./goblin_big.png");
+      }
+
+      #down {
+        background-position-y: 0px;
+        animation: move 1s infinite steps(1), down 3s steps(16, end);
+        opacity: 0%;
+      }
+
+      #rite {
+        background-position-y: 355px;
+        animation: move 1s infinite steps(1), rite 3s 3s steps(16, end);
+        opacity: 0%;
+      }
+
+      #up {
+        background-position-y: 532px;
+        animation: move 1s infinite steps(1), up 3s 6s steps(16, end);
+        opacity: 0%;
+      }
+
+      #left {
+        background-position-y: 177px;
+        animation: move 1s infinite steps(1), left 3s 9s steps(16, end) forwards;
+        opacity: 0%;
+      }
+
+      @keyframes move {
+        33% {
+          background-position-x: 150px;
+        }
+
+        66% {
+          background-position-x: 310px;
+        }
+
+        100% {
+          background-position-x: 0;
+        }
+      }
+
+      @keyframes down {
+        0% {
+          opacity: 100%;
+          transform: translateY(0px);
+        }
+
+        100% {
+          transform: translateY(calc(600px - 170px));
+          opacity: 100%;
+        }
+      }
+      @keyframes rite {
+        0% {
+          opacity: 100%;
+          transform: translate(0px, calc(600px - 170px));
+        }
+
+        100% {
+          transform: translate(calc(600px - 157px), calc(600px - 170px));
+          opacity: 100%;
+        }
+      }
+      @keyframes up {
+        0% {
+          opacity: 100%;
+          transform: translate(calc(600px - 157px), calc(600px - 170px));
+        }
+
+        100% {
+          transform: translate(calc(600px - 157px), 0px);
+          opacity: 100%;
+        }
+      }
+      @keyframes left {
+        0% {
+          opacity: 100%;
+          transform: translateX(calc(600px - 170px));
+        }
+
+        100% {
+          transform: translateX(0px);
+          opacity: 100%;
+        }
+      }
+
+      #container > div {
+        animation-play-state: paused;
+      }
+      #container:hover > div {
+        animation-play-state: running;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <div class="sprite" id="down"></div>
+      <div class="sprite" id="rite"></div>
+      <div class="sprite" id="up"></div>
+      <div class="sprite" id="left"></div>
+    </div>
+  </body>
+</html>

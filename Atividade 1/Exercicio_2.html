@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        display: flex;
+        height: 100vh;
+        width: 100vw;
+        overflow: hidden;
+        justify-content: center;
+        align-items: center;
+      }
+
+      #loadcircle {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 250px;
+        width: 250px;
+        background: linear-gradient(#000 50%, #555 50%);
+        border-radius: 100%;
+        animation: girar 0.5s linear;
+        animation-iteration-count: infinite;
+        animation-play-state: paused;
+      }
+
+      #loadcircle:hover {
+        animation-play-state: running;
+      }
+
+      #whitecircle {
+        height: 200px;
+        width: 200px;
+        background: white;
+        border-radius: 100%;
+      }
+
+      @keyframes girar {
+        0% {
+          transform: rotate(0deg);
+        }
+
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="loadcircle">
+      <div id="whitecircle"></div>
+    </div>
+  </body>
+</html>
