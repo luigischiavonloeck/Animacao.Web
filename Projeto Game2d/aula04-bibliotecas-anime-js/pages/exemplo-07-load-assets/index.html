@@ -136,22 +136,22 @@
   </div>
 
   <script>
-    const sliderContainer = document.querySelector('.slider-container')
-    const loadContainer = document.querySelector('.load-container')
-    const loadingBar = document.querySelector('.loading-bar')
+    // const sliderContainer = document.querySelector('.slider-container')
+    // const loadContainer = document.querySelector('.load-container')
+    // const loadingBar = document.querySelector('.loading-bar')
     const imgUrls = [
         {src:"https://m.media-amazon.com/images/M/MV5BNDFjNWYxMDktOTE4Yy00MjhjLTg0NTgtNThjYmQ2MmFiMjcwXkEyXkFqcGdeQXVyMTUzMTg2ODkz._V1_.jpg"},
         {src:"https://m.media-amazon.com/images/M/MV5BNGZhYWIyZWUtOTdjZS00ZTc1LWFlZDMtNzU5MTE0OTcyMjg1XkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_.jpg"},
         {src:"https://m.media-amazon.com/images/M/MV5BYzIxNjJlYmYtZWZhZC00N2JiLThhMTMtZWNiZTI3YmEzYmQxXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg"}
     ]
 
-    const sliderItens = Array.from(document.querySelectorAll('.slider-item'))
-    const btnPrev = document.querySelector('.slider-prev')
-    const btnNext = document.querySelector('.slider-next')
+    // const sliderItens = Array.from(document.querySelectorAll('.slider-item'))
+    // const btnPrev = document.querySelector('.slider-prev')
+    // const btnNext = document.querySelector('.slider-next')
 
     let itemIndex = 0
     let countLoaded = 0;
-    let totalAssetsLoad  = sliderItens.length
+    let totalAssetsLoad  = sliderItens.length // nmr de assets a serem carregados
     let loadedProgress  = 0
 
     sliderItens.forEach((listItem,index)=>{
