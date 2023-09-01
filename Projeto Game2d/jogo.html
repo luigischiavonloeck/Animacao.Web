@@ -12,15 +12,36 @@
       href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
       rel="stylesheet"
     />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"
+      integrity="sha512-z4OUqw38qNLpn1libAN9BsoDx6nbNFio5lA6CuTp9NlK83b89hgyCVq+N5FdBJptINztxn1Z3SaKSKUS5UP60Q=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
   </head>
   <body>
     <div class="container">
       <h1 class="title">Escolha o personagem</h1>
       <div class="gameopt">
         <div class="opt tr" id="trArea">
-          <svg id="border" width="250" height="352" viewBox="0 0 250 352" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="2.5" y="2.5" width="245" height="347" stroke="#ff1018" stroke-width="5" class="svg-elem-1"></rect>
-            </svg>            
+          <svg
+            id="border"
+            width="250"
+            height="352"
+            viewBox="0 0 250 352"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect
+              x="2.5"
+              y="2.5"
+              width="245"
+              height="347"
+              stroke="#ff1018"
+              stroke-width="5"
+              class="svg-elem-1"
+            ></rect>
+          </svg>
           <img
             src=".\sprites\TR\png\1\idle\1_terrorist_1_Idle_000.png"
             height="270px"
@@ -31,9 +52,24 @@
           <input type="hidden" name="tropt" value="false" />
         </div>
         <div class="opt ct" id="ctArea">
-          <svg id="border" width="250" height="352" viewBox="0 0 250 352" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="2.5" y="2.5" width="245" height="347" stroke="#0081eb" stroke-width="5" class="svg-elem-1"></rect>
-            </svg>   
+          <svg
+            id="border"
+            width="250"
+            height="352"
+            viewBox="0 0 250 352"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect
+              x="2.5"
+              y="2.5"
+              width="245"
+              height="347"
+              stroke="#0081eb"
+              stroke-width="5"
+              class="svg-elem-1"
+            ></rect>
+          </svg>
           <img
             src=".\sprites\CT\png\1\idle\1_police_Idle_000.png"
             height="270px"
@@ -44,7 +80,12 @@
           <input type="hidden" name="ctopt" value="false" />
         </div>
       </div>
-      <h1 class="title play">Play</h1>
+      <!-- <h1 class="title play">Play</h1> -->
+      <a href="#" class="ml6" id="play">
+        <!-- <span class="text-wrapper" id="play"> -->
+        <span class="letters">Play</span>
+        <!-- </span> -->
+      </a>
     </div>
     <script src="./script.js"></script>
   </body>
