@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .examples-containers {
+        margin-top: 1%;
+        width: 70%;
+        display: flex;
+        justify-content: center;
+      }
+
+      canvas {
+        border: 3px dashed blue;
+      }
+
+      div {
+        flex-direction: column;
+        justify-items: center;
+      }
+
+      p {
+        text-align: center;
+      }
+    </style>
+    <title>Document</title>
+  </head>
+  <body>
+    <h2 class="nes-text is-primary">
+      <a
+        href="https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial"
+        target="_blank"
+        >Canvas API:</a
+      >
+      Introdução ao Canvas
+    </h2>
+    <div class="nes-container with-title examples-containers">
+      <span class="title">Exemplo 1</span>
+      <canvas width="600" height="300">
+        Seu navegador não suporta a tag canvas!
+      </canvas>
+    </div>
+    <script>
+      window.addEventListener("load", canvasApp, false);
+
+      function canvasApp() {
+        const canvas = document.querySelector("canvas");
+        const ctx = canvas.getContext("2d");
+        ctx.strokeRect(50, 150, 50, 50);
+
+        ctx.lineWidth = 5;
+        ctx.strokeStyle = "#f00";
+        ctx.beginPath();
+        ctx.moveTo(17, 40);
+        ctx.lineTo(30, 40);
+        ctx.lineTo(30, 50);
+        ctx.lineTo(40, 50);
+        ctx.lineTo(40, 40);
+        ctx.lineTo(50, 40);
+        ctx.lineTo(50, 30);
+        ctx.lineTo(40, 30);
+        ctx.lineTo(40, 20);
+        ctx.lineTo(30, 20);
+        ctx.lineTo(30, 30);
+        ctx.lineTo(20, 30);
+        ctx.lineTo(20, 40);
+        ctx.stroke();
+        ctx.closePath();
+
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        ctx.arc(150, 50, 30, 2, (Math.PI / 180) * 360);
+        ctx.fillStyle = "red";
+        ctx.strokeStyle = "blue";
+        ctx.fill();
+        ctx.stroke();
+        ctx.closePath();
+
+        ctx.font = "84px sans";
+        ctx.fillText("teste", 250, 50);
+        ctx.strokeText("teste", 250, 100);
+
+        ctx.shadowColor = "blue";
+        ctx.shadowOffsetX = 0;
+        ctx.shadowOffsetY = 0;
+        ctx.shadowBlur = 10;
+        let texto = "Olá Canvas";
+        ctx.fillStyle = "#fff";
+        ctx.fillText(texto, 150, 250);
+        ctx.shadowOffsetX = 0;
+        ctx.shadowOffsetY = 0;
+        ctx.shadowBlur = 0;
+        ctx.fillRect(100, 200, 50, 50);
+      }
+    </script>
+  </body>
+</html>

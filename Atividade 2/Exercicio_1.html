@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .container {
+        margin-top: 1%;
+        width: 70%;
+        display: flex;
+        justify-content: center;
+      }
+
+      canvas {
+        border: 3px solid black;
+      }
+
+      div {
+        flex-direction: column;
+        justify-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <canvas width="600" height="400">
+        Seu navegador não suporta a tag canvas!
+      </canvas>
+    </div>
+    <script>
+      window.addEventListener("load", canvasApp, false);
+
+      function quad(ctx, x, y, s, l, color, fill = false) {
+        ctx.lineWidth = l;
+        ctx.strokeStyle = color;
+        ctx.strokeRect(x, y, s, s);
+        if (fill) {
+          ctx.fillStyle = fill;
+          ctx.fillRect(x, y, s, s);
+        }
+      }
+
+      function canvasApp() {
+        const canvas = document.querySelector("canvas");
+        const ctx = canvas.getContext("2d");
+
+        quad(ctx, 50, 30, 50, 5, "magenta");
+        quad(ctx, 120, 30, 50, 5, "blue", "red");
+      }
+    </script>
+  </body>
+</html>
