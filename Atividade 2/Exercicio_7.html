@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href='https://fonts.googleapis.com/css?family=Open Sans' rel='stylesheet'>
     <title>Document</title>
     <style>
       body {
@@ -38,14 +39,20 @@
     <script>
       window.addEventListener("load", canvasApp, false);
 
-      function quad(ctx,x,y,s,l,color,fill=false){
-        
+      function writeCenterXY(ctx,cwidth,cheight,text,color='black',size=12,family='serif',style='normal',base='alphabetic'){
+        ctx.font = `${style} ${size}px ${family}`;
+        ctx.fillStyle = color;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = base;
+        ctx.fillText(text,cwidth/2,cheight/2);
       }
 
-    //   function canvasApp() {
-    //     const canvas = document.querySelector("canvas");
-    //     const ctx = canvas.getContext("2d");
-    //   }
+      function canvasApp() {
+        const canvas = document.querySelector("canvas");
+        const ctx = canvas.getContext("2d");
+
+        writeCenterXY(ctx,canvas.width,canvas.height,'CENTRALIZADO','#00f',24,'open sans','normal','top');
+      }
     </script>
   </body>
 </html>

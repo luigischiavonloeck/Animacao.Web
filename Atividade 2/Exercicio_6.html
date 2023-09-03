@@ -38,14 +38,35 @@
     <script>
       window.addEventListener("load", canvasApp, false);
 
-      function quad(ctx,x,y,s,l,color,fill=false){
-        
+      function smile(ctx,x,y,size){
+        ctx.beginPath();
+        ctx.strokeStyle = "black";
+        ctx.lineWidth = size/12;
+        ctx.arc(x,y,size,0,2*Math.PI);
+        ctx.stroke();
+        ctx.fillStyle = "yellow";
+        ctx.arc(x,y,size,0,2*Math.PI);
+        ctx.fill();
+        ctx.beginPath();
+        ctx.fillStyle = "black";
+        ctx.arc(x-size/3,y-size/3,size/9,0,2*Math.PI);
+        ctx.fill();
+        ctx.beginPath();
+        ctx.fillStyle = "black";
+        ctx.arc(x+size/3,y-size/3,size/9,0,2*Math.PI);
+        ctx.fill();
+        ctx.beginPath();
+        ctx.fillStyle = "black";
+        ctx.arc(x,y+size/4,size/2,0,Math.PI);
+        ctx.stroke();
       }
 
-    //   function canvasApp() {
-    //     const canvas = document.querySelector("canvas");
-    //     const ctx = canvas.getContext("2d");
-    //   }
+      function canvasApp() {
+        const canvas = document.querySelector("canvas");
+        const ctx = canvas.getContext("2d");
+
+        smile(ctx,300,200,50);
+      }
     </script>
   </body>
 </html>
