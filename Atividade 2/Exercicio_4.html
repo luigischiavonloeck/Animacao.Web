@@ -36,16 +36,30 @@
       </canvas>
     </div>
     <script>
-      window.addEventListener("load", canvasApp, false);
+      window.addEventListener('load', canvasApp, false)
 
-      function quad(ctx,x,y,s,l,color,fill=false){
-        
+      function drawStar(ctx, x, y, s, color) {
+        ctx.beginPath()
+        ctx.fillStyle = color
+        ctx.moveTo(x, y)
+        ctx.lineTo(x + s / 2, y + (Math.sqrt(3) * s) / 2)
+        ctx.lineTo(x - s / 2, y + (Math.sqrt(3) * s) / 2)
+        ctx.fill()
+        ctx.moveTo(x, y + s / 4 + (Math.sqrt(3) * s) / 2)
+        ctx.lineTo(x + s / 2, y + s / 4)
+        ctx.lineTo(x - s / 2, y + s / 4)
+        ctx.closePath()
+        ctx.fill()
       }
 
-    //   function canvasApp() {
-    //     const canvas = document.querySelector("canvas");
-    //     const ctx = canvas.getContext("2d");
-    //   }
+      function canvasApp() {
+        const canvas = document.querySelector('canvas')
+        const ctx = canvas.getContext('2d')
+
+        drawStar(ctx, 50, 50, 40, 'SaddleBrown')
+        drawStar(ctx, 100, 25, 40, 'gray')
+        drawStar(ctx, 150, 50, 40, 'gold')
+      }
     </script>
   </body>
 </html>

@@ -36,16 +36,43 @@
       </canvas>
     </div>
     <script>
-      window.addEventListener("load", canvasApp, false);
+      window.addEventListener('load', canvasApp, false)
 
-      function quad(ctx,x,y,s,l,color,fill=false){
-        
+      function circ(ctx, x, y, r, color) {
+        ctx.beginPath()
+        ctx.fillStyle = color
+        ctx.arc(x, y, r, 0, 2 * Math.PI)
+        ctx.fill()
       }
 
-    //   function canvasApp() {
-    //     const canvas = document.querySelector("canvas");
-    //     const ctx = canvas.getContext("2d");
-    //   }
+      function drawStar(ctx, x, y, s, color) {
+        ctx.beginPath()
+        ctx.fillStyle = color
+        ctx.moveTo(x, y)
+        ctx.lineTo(x + s / 2, y + (Math.sqrt(3) * s) / 2)
+        ctx.lineTo(x - s / 2, y + (Math.sqrt(3) * s) / 2)
+        ctx.fill()
+        ctx.moveTo(x, y + s / 4 + (Math.sqrt(3) * s) / 2)
+        ctx.lineTo(x + s / 2, y + s / 4)
+        ctx.lineTo(x - s / 2, y + s / 4)
+        ctx.closePath()
+        ctx.fill()
+      }
+
+      function shield(ctx, x, y, size) {
+        circ(ctx, x, y, size / 1.20, 'red')
+        circ(ctx, x, y, size / 1.5, 'white')
+        circ(ctx, x, y, size / 1.95, 'red')
+        circ(ctx, x, y, size / 2.5, 'blue')
+        drawStar(ctx, x, y - (Math.sqrt(3) * size) / 4.5, size / 1.5, 'white')
+      }
+
+      function canvasApp() {
+        const canvas = document.querySelector('canvas')
+        const ctx = canvas.getContext('2d')
+
+        shield(ctx, canvas.width / 2, canvas.height / 2, 100)
+      }
     </script>
   </body>
 </html>

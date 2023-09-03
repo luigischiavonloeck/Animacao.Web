@@ -36,28 +36,41 @@
       </canvas>
     </div>
     <script>
-      window.addEventListener("load", canvasApp, false);
+      window.addEventListener('load', canvasApp, false)
 
       function triEqui(ctx, x, y, l, color = '#000', rev = false) {
-        ctx.beginPath();
-        ctx.lineWidth = l;
-        ctx.strokeStyle = color;
-        ctx.arc(x, y, r, 0, 2 * Math.PI);
-        ctx.stroke();
-        if (fill) {
-          ctx.lineWidth = l;
-          ctx.fillStyle = fill;
-          ctx.arc(x, y, r, 0, 2 * Math.PI);
-          ctx.fill();
-        }
+        // triangulo isosceles
+        // ctx.beginPath();
+        // ctx.fillStyle = color;
+        // if (rev) {
+        //   ctx.moveTo(x, y);
+        //   ctx.lineTo(x + l, y);
+        //   ctx.lineTo(x + l / 2, y + l);
+        // } else {
+        //   ctx.moveTo(x, y + l);
+        //   ctx.lineTo(x + l, y + l);
+        //   ctx.lineTo(x + l / 2, y);
+        // }
+        // ctx.closePath();
+        // ctx.fill();
+
+        // triangulo equilatero
+
+        ctx.beginPath()
+        ctx.fillStyle = color
+        ctx.moveTo(x,y + (rev ? (Math.sqrt(3)*l)/2 : 0)); // formula da altura: h = l * raiz(3) / 2
+        ctx.lineTo(x+l/2,y+(rev ? 0 : (Math.sqrt(3)*l)/2));
+        ctx.lineTo(x-l/2,y+(rev ? 0 : (Math.sqrt(3)*l)/2));
+        ctx.closePath()
+        ctx.fill()
       }
 
       function canvasApp() {
-        const canvas = document.querySelector("canvas");
-        const ctx = canvas.getContext("2d");
+        const canvas = document.querySelector('canvas')
+        const ctx = canvas.getContext('2d')
 
-        triEqui(ctx, 100, 10, 80, "#000");
-        triEqui(ctx, 200, 10, 80, "#0f0", true);
+        triEqui(ctx, 100, 10, 80, '#000')
+        triEqui(ctx, 200, 10, 80, '#0f0', true)
       }
     </script>
   </body>
