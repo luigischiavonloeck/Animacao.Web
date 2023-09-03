@@ -4,7 +4,9 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href='https://fonts.googleapis.com/css?family=Open Sans:wght@800&display=swap' rel='stylesheet'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <title>Document</title>
     <style>
       body {
@@ -39,19 +41,44 @@
     <script>
       window.addEventListener("load", canvasApp, false);
 
-      function writeCenterXY(ctx,cwidth,cheight,text,color='black',size=12,family='serif',style='normal',base='alphabetic'){
+      function writeCenterXY(ctx,cwidth,cheight,text,color='black',border='green',size=12,family='serif',style='normal',base='alphabetic'){
         ctx.font = `${style} ${size}px ${family}`;
         ctx.fillStyle = color;
+        ctx.strokeStyle = border;
         ctx.textAlign = 'center';
         ctx.textBaseline = base;
         ctx.fillText(text,cwidth/2,cheight/2);
+        ctx.lineWidth = 1;
+        ctx.strokeText(text,cwidth/2,cheight/2);
       }
 
       function canvasApp() {
         const canvas = document.querySelector("canvas");
         const ctx = canvas.getContext("2d");
 
-        writeCenterXY(ctx,canvas.width,canvas.height,'TRICOLOR','#00f',62,'Open Sans','bolder','bottom');
+        let fundo = ctx.createLinearGradient(0, canvas.height/2, canvas.width, canvas.height/2)
+        fundo.addColorStop(0, "#000")
+			  fundo.addColorStop(0.2, "#000")
+			  fundo.addColorStop(.5, "#fff")
+			  fundo.addColorStop(0.85, "#00f")
+			  fundo.addColorStop(1, "#00f")
+			  ctx.fillStyle = fundo;
+			  ctx.fillRect(0, 0, canvas.width, canvas.height)
+
+        let text = ctx.createLinearGradient(150, 300, 450, 300)
+        text.addColorStop(0, "#00f")
+			  text.addColorStop(0.2, "#00f")
+			  text.addColorStop(.5, "#fff")
+			  text.addColorStop(0.85, "#000")
+			  text.addColorStop(1, "#000")
+
+        let border = ctx.createLinearGradient(150, 300, 450, 300)
+        border.addColorStop(0, "#000")
+			  border.addColorStop(0.2, "#000")
+			  border.addColorStop(.5, "#00f")
+			  border.addColorStop(0.85, "#fff")
+			  border.addColorStop(1, "#fff")
+        writeCenterXY(ctx,canvas.width,canvas.height,'TRICOLOR',text,border,72,'Open Sans','bold','bottom');
       }
     </script>
   </body>

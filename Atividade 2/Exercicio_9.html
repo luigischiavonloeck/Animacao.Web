@@ -36,16 +36,46 @@
       </canvas>
     </div>
     <script>
-      window.addEventListener("load", canvasApp, false);
+      window.addEventListener('load', canvasApp, false)
 
-      function quad(ctx,x,y,s,l,color,fill=false){
-        
+      function canvasApp() {
+        const canvas = document.querySelector('canvas')
+        const ctx = canvas.getContext('2d')
+
+        ctx.fillStyle = '#120133'
+        ctx.fillRect(0, 0, canvas.width, canvas.height / 2)
+        ctx.fillStyle = '#0b1932'
+        ctx.fillRect(0, canvas.height / 2, canvas.width, canvas.height)
+
+        let fundoRadial = ctx.createRadialGradient(
+          canvas.width / 2,
+          120,
+          20,
+          canvas.width / 2,
+          120,
+          70
+        )
+        fundoRadial.addColorStop(0, 'white')
+        fundoRadial.addColorStop(0.45, 'yellow')
+        fundoRadial.addColorStop(0.46, 'yellow')
+        fundoRadial.addColorStop(1, '#0000')
+        ctx.fillStyle = fundoRadial
+        ctx.fillRect(0, 0, canvas.width, canvas.height)
+
+        let fundoReflex = ctx.createRadialGradient(
+          canvas.width / 2,
+          220,
+          20,
+          canvas.width / 2,
+          500,
+          300
+        )
+        fundoReflex.addColorStop(0, 'white')
+        fundoReflex.addColorStop(1, '#0000')
+        ctx.fillStyle = fundoReflex
+        ctx.fillRect(0, 0, canvas.width, canvas.height)
+
       }
-
-    //   function canvasApp() {
-    //     const canvas = document.querySelector("canvas");
-    //     const ctx = canvas.getContext("2d");
-    //   }
     </script>
   </body>
 </html>
