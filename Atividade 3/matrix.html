@@ -20,44 +20,56 @@
   <body>
     <canvas id="canvas"></canvas>
     <script>
-      var canvas = document.getElementById("canvas");
-      var ctx = canvas.getContext("2d");
+      var canvas = document.getElementById('canvas')
+      var ctx = canvas.getContext('2d')
 
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      canvas.width = window.innerWidth
+      canvas.height = window.innerHeight
 
-      var colunas = Math.floor(canvas.width / 15) + 1;
-      var linhas = [];
+      var colunas = Math.floor(canvas.width / 20) + 1
+      var linhas = []
 
       for (var i = 0; i < colunas; i++) {
-        linhas[i] = 1;
+        linhas[i] = {char: '', y: 0}
       }
 
+      var tsi = ['C', 'S', 'T', 'S', 'I']
       function desenha() {
-        ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.15)'
+        ctx.fillRect(0, 0, canvas.width, canvas.height)
 
-        ctx.fillStyle = "#0f0";
-        ctx.font = "15pt monospace";
+        ctx.fillStyle = '#0f0'
+        ctx.font = '25pt monospace'
 
         for (var i = 0; i < colunas; i++) {
-          var txt = String.fromCharCode(1e2 + Math.random() * 33);
-          var x = i * 15;
-          var y = linhas[i] * 20;
+          var coluna = linhas[i]
+          //String.fromCharCode(65 + Math.floor(Math.random() * 26));
+          // String.fromCharCode(1e2 + Math.random() * 10)
+          // var txt = String.fromCharCode(65 + Math.floor(Math.random() * 26))
 
-          ctx.fillText(txt, x, y);
-
-          if (y > 100 + Math.random() * 1e4) {
-            linhas[i] = 0;
+          if (coluna.char === 'C') {
+            coluna.char = 'S'
+          } else {
+            coluna.char = String.fromCharCode(65 + Math.floor(Math.random() * 26))
           }
 
-          linhas[i]++;
+          var x = i * 20
+          var y = coluna.y * 25
+
+          ctx.fillText(coluna.char, x, y)
+
+          if (y > 100 + Math.random() * 1e4) {
+            coluna.y = 0
+            coluna.char = '';
+          }
+
+          coluna.y++
         }
       }
 
-      setInterval(desenha, 50);
+      setInterval(desenha, 150)
 
-      window.addEventListener("load", canvasApp, false);
+      window.addEventListener('load', canvasApp, false)
     </script>
   </body>
 </html>

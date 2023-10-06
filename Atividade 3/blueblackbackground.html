@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BlueBlack</title>
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .container {
+        margin-top: 1%;
+        width: 70%;
+        display: flex;
+        justify-content: center;
+      }
+
+      canvas {
+        border: 3px solid black;
+      }
+
+      div {
+        flex-direction: column;
+        justify-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <canvas width="600" height="400" id="canvas">
+        Seu navegador não suporta a tag canvas!
+      </canvas>
+    </div>
+    <script>
+      function canvasApp() {
+        const canvas = document.getElementById('canvas')
+        const ctx = canvas.getContext('2d')
+
+        var squareSize = 150
+        var squareX = 0
+        var squareY = 0
+        var squareColor = 'blue'
+
+        function drawSquare() {
+          ctx.fillStyle = squareColor
+          ctx.fillRect(squareX, squareY, squareSize, squareSize)
+          squareX += squareSize
+          if (squareColor == 'blue') {
+            squareColor = 'black'
+          } else {
+            squareColor = 'blue'
+          }
+          if (squareX > canvas.width) {
+            squareX = 0
+            squareY += squareSize
+            squareSize < 10 ? squareSize : (squareSize /= 2)
+          }
+          if (squareY > canvas.height) {
+            squareY = 0
+            squareSize = 150
+          }
+        }
+
+        // poderia se utilizar um for para desenhar os quadrados apenas uma vez, através da condição squareY > canvas.height
+        setInterval(drawSquare, 10)
+      }
+
+      window.addEventListener('load', canvasApp, false)
+    </script>
+  </body>
+</html>
