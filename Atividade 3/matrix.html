@@ -28,12 +28,13 @@
 
       var colunas = Math.floor(canvas.width / 20) + 1;
       var linhas = [];
+      var velocidade = prompt("Velocidade: ");
 
       for (var i = 0; i < colunas; i++) {
         linhas[i] = { char: "", y: 0, text: false, index: 0 };
       }
 
-      var text = "CSTSI";
+      var text = prompt("Texto personalizado: ").toUpperCase;
       text = text.split("");
       function desenha() {
         ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
@@ -83,9 +84,11 @@
         }
       }
 
-      setInterval(desenha, 120);
+      setInterval(desenha, velocidade);
+      
 
       window.addEventListener("load", canvasApp, false);
+
     </script>
   </body>
 </html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BlueBlack</title>
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      canvas {
+        border: 3px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <canvas width="900" height="600" id="canvas">
+        Seu navegador não suporta a tag canvas!
+      </canvas>
+    </div>
+    <script>
+      function canvasApp() {
+        const canvas = document.getElementById("canvas");
+        const ctx = canvas.getContext("2d");
+
+        function drawCircle() {
+          x = Math.random() * window.innerWidth;
+          y = Math.random() * window.innerHeight;
+          size = 5 + Math.random() * 10;
+          ctx.beginPath();
+          ctx.fillStyle = "yellow";
+          ctx.arc(x, y, size, 0, 2 * Math.PI);
+          ctx.fill();
+          gravity(x, y, size);
+          ctx.fillStyle = "rgba(255, 255, 255, 0.01)";
+          ctx.fillRect(0, 0, window.innerWidth, window.innerHeight);
+        }
+
+        function gravity(x, y, size) {
+          for (y = y; y < canvas.height; y++) {
+            ctx.beginPath();
+            ctx.fillStyle = "yellow";
+            ctx.arc(x, y, size, 0, 2 * Math.PI);
+            ctx.fill();
+            console.log(y);
+          }
+        }
+
+        setInterval(drawCircle, 10);
+      }
+
+      window.addEventListener("load", canvasApp, false);
+    </script>
+  </body>
+</html>
