@@ -28,13 +28,14 @@
 
       var colunas = Math.floor(canvas.width / 20) + 1;
       var linhas = [];
-      var velocidade = prompt("Velocidade: ");
+      var velocidade = 20;
 
       for (var i = 0; i < colunas; i++) {
         linhas[i] = { char: "", y: 0, text: false, index: 0 };
       }
 
-      var text = prompt("Texto personalizado: ").toUpperCase;
+      var text = prompt("Texto personalizado: ").toUpperCase();
+      // var text = "BLUEBLACK";
       text = text.split("");
       function desenha() {
         ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
@@ -84,7 +85,7 @@
         }
       }
 
-      setInterval(desenha, velocidade);
+      setInterval(desenha, 50);
       
 
       window.addEventListener("load", canvasApp, false);

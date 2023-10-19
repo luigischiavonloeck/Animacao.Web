@@ -24,37 +24,62 @@
       </canvas>
     </div>
     <script>
-      function canvasApp() {
-        const canvas = document.getElementById("canvas");
-        const ctx = canvas.getContext("2d");
+      const canvas = document.getElementById('canvas')
+      const ctx = canvas.getContext('2d')
 
-        function drawCircle() {
-          x = Math.random() * window.innerWidth;
-          y = Math.random() * window.innerHeight;
-          size = 5 + Math.random() * 10;
-          ctx.beginPath();
-          ctx.fillStyle = "yellow";
-          ctx.arc(x, y, size, 0, 2 * Math.PI);
-          ctx.fill();
-          gravity(x, y, size);
-          ctx.fillStyle = "rgba(255, 255, 255, 0.01)";
-          ctx.fillRect(0, 0, window.innerWidth, window.innerHeight);
+      const circulos = []
+
+      function corAleatoria() {
+        const letras = '0123456789ABCDEF'
+        let cor = '#'
+        for (let i = 0; i < 6; i++) {
+          cor += letras[Math.floor(Math.random() * 16)]
         }
+        return cor
+      }
 
-        function gravity(x, y, size) {
-          for (y = y; y < canvas.height; y++) {
-            ctx.beginPath();
-            ctx.fillStyle = "yellow";
-            ctx.arc(x, y, size, 0, 2 * Math.PI);
-            ctx.fill();
-            console.log(y);
+      function gerarCirculo() {
+        const raio = Math.random() * 20 + 15
+        const x = Math.random() * (canvas.width - 2 * raio) + raio
+        const y = -raio
+        const velocidade = Math.random() * 5 + 1
+        const cor = corAleatoria()
+
+        circulos.push({ x, y, raio, velocidade, cor })
+      }
+
+      function desenhaCirculo(circulo) {
+        ctx.beginPath()
+        ctx.arc(circulo.x, circulo.y, circulo.raio, 0, Math.PI * 2)
+        ctx.fillStyle = circulo.cor
+        ctx.fill()
+      }
+
+      function update() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height)
+
+        for (let i = circulos.length - 1; i >= 0; i--) {
+          const circulo = circulos[i]
+          circulo.y += circulo.velocidade
+
+          if (circulo.y - circulo.raio > canvas.height) {
+            // Remove círculos que saíram da tela
+            circulos.splice(i, 1)
+          } else {
+            desenhaCirculo(circulo)
           }
         }
 
-        setInterval(drawCircle, 10);
+        requestAnimationFrame(update)
       }
 
-      window.addEventListener("load", canvasApp, false);
+      function loop() {
+        gerarCirculo()
+        setTimeout(loop, Math.random() * 100)
+      }
+
+      loop()
+      update()
     </script>
   </body>
 </html>
