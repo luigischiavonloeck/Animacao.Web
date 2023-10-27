@@ -20,8 +20,8 @@ export class Sitting extends State {
   }
   enter() {
     this.player.frameX = 0
-    this.player.maxFrame = 4
-    this.player.frameY = 5
+    this.player.maxFrame = 3
+    this.player.frameY = 2
   }
   handleInput(input) {
     if (input.includes('a') || input.includes('d')) {
@@ -39,8 +39,8 @@ export class Running extends State {
   }
   enter() {
     this.player.frameX = 0
-    this.player.maxFrame = 8
-    this.player.frameY = 3
+    this.player.maxFrame = 5
+    this.player.frameY = 4
   }
   handleInput(input) {
     if (input.includes('s')) {
@@ -61,10 +61,10 @@ export class Jumping extends State {
   enter() {
     this.player.frameX = 0
     if (this.player.onGround()) {
-      this.player.vy -= 25
+      this.player.vy -= 30
     }
-    this.player.maxFrame = 6
-    this.player.frameY = 1
+    this.player.maxFrame = 3
+    this.player.frameY = 3
   }
   handleInput(input) {
     if (this.player.vy > this.player.weight) {
@@ -81,9 +81,9 @@ export class Falling extends State {
     this.player = player
   }
   enter() {
-    this.player.frameX = 0
-    this.player.maxFrame = 6
-    this.player.frameY = 2
+    this.player.frameX = 4
+    this.player.maxFrame = 1
+    this.player.frameY = 3
   }
   handleInput(input) {
     if (this.player.onGround()) {
@@ -99,8 +99,8 @@ export class Rolling extends State {
   }
   enter() {
     this.player.frameX = 0
-    this.player.maxFrame = 6
-    this.player.frameY = 6
+    this.player.maxFrame = 5
+    this.player.frameY = 0
   }
   handleInput(input) {
     if (!input.includes(' ') && this.player.onGround()) {
@@ -120,13 +120,13 @@ export class Hit extends State {
   }
   enter() {
     this.player.frameX = 0
-    this.player.maxFrame = 10
-    this.player.frameY = 4
+    this.player.maxFrame = 5
+    this.player.frameY = 1
   }
   handleInput(input) {
-    if (this.player.frameX >= 10 && this.player.onGround()) {
+    if (this.player.frameX >= 5 && this.player.onGround()) {
       this.player.setState(states.RUNNING, 1)
-    } else if (this.player.frameX >= 10 && !this.player.onGround()) {
+    } else if (this.player.frameX >= 5 && !this.player.onGround()) {
       this.player.setState(states.FALLING, 1)
     }
   }

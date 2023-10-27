@@ -49,13 +49,13 @@ export class FlyingEnemy extends Enemy {
   constructor(game) {
     super()
     this.game = game
-    this.width = 60
-    this.height = 44
+    this.width = 96
+    this.height = 96
     this.x = this.game.width + Math.random() * this.game.width * 0.5
     this.y = Math.random() * this.game.height * 0.5
     this.speedX = Math.random() + 1
     this.speedY = 0
-    this.maxFrame = 5
+    this.maxFrame = 3
     this.image = document.getElementById('enemy_fly')
     this.angle = 0
     this.va = Math.random() * 0.1 + 0.1
@@ -71,13 +71,13 @@ export class GroundEnemy extends Enemy {
   constructor(game) {
     super()
     this.game = game
-    this.width = 60
-    this.height = 87
+    this.width = 96
+    this.height = 96
     this.x = this.game.width
     this.y = this.game.height - this.height - this.game.groundMargin
     this.speedX = 0
     this.speedY = 0
-    this.maxFrame = 1
+    this.maxFrame = 3
     this.image = document.getElementById('enemy_plant')
   }
 }
@@ -86,14 +86,14 @@ export class ClimbingEnemy extends Enemy {
   constructor(game) {
     super()
     this.game = game
-    this.width = 120
+    this.width = 217.3
     this.height = 144
     this.x = this.game.width
     this.y = Math.random() * this.game.height * 0.5
     this.image = document.getElementById('enemy_spider_big')
     this.speedX = 0
     this.speedY = Math.random() > 0.5 ? 1 : -1
-    this.maxFrame = 5
+    this.maxFrame = 2
   }
   update(deltaTime) {
     super.update(deltaTime)

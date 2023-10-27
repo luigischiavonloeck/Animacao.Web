@@ -7,8 +7,8 @@ import { UI } from './UI.js'
 window.addEventListener('load', function () {
   const canvas = document.getElementById('canvas1')
   const ctx = canvas.getContext('2d')
-  canvas.width = 500
-  canvas.height = 500
+  canvas.width = 800
+  canvas.height = 793
 
   class Game {
     constructor(width, height) {
@@ -23,19 +23,19 @@ window.addEventListener('load', function () {
       this.ui = new UI(this)
       this.enemies = []
       this.enemyTimer = 0
-      this.enemyInterval = 2000
+      this.enemyInterval = 1000
       this.debug = false
       this.score = 0
-      this.fontColor = 'black'
+      this.fontColor = 'white'
       this.player.currentState = this.player.states[0]
       this.player.currentState.enter()
       this.time = 0
-      this.maxTime = 5000
+      this.maxTime = 20000
       this.gameOver = false
     }
     update(deltaTime) {
       this.time += deltaTime
-      if (this.time > this.maxTime){
+      if (this.time > this.maxTime) {
         this.gameOver = true
       }
       this.background.update()
@@ -61,8 +61,8 @@ window.addEventListener('load', function () {
       this.enemies.forEach(enemy => enemy.draw(context))
       this.ui.draw(context)
     }
-    addEnemy(enemy){
-      if (this.speed > 0 && Math.random() < 0.5){
+    addEnemy(enemy) {
+      if (this.speed > 0 && Math.random() < 0.5) {
         this.enemies.push(new GroundEnemy(this))
       } else if (this.speed > 0) {
         this.enemies.push(new ClimbingEnemy(this))
@@ -74,22 +74,29 @@ window.addEventListener('load', function () {
   const game = new Game(canvas.width, canvas.height)
   console.log(game)
   let lastTime = 0
-  // let sumFrame = 0
+  let sumFrame = 10
 
-  function animate(timeStamp ) {
+  function animate(timeStamp) {
     const deltaTime = timeStamp - lastTime
     lastTime = timeStamp
 
-    // sumFrame += deltaTime
-    // if (sumFrame > deltaTime * 2.4){
-    // }
-      
-    // console.log(deltaTime)
-    ctx.clearRect(0, 0, canvas.width, canvas.height)
-    game.update(deltaTime)
-    game.draw(ctx)
+    sumFrame += deltaTime
+    if (sumFrame > deltaTime * 2.4){
+      // console.log(deltaTime)
+      ctx.clearRect(0, 0, canvas.width, canvas.height)
+      game.update(deltaTime)
+      game.draw(ctx)
+    }
 
-    if (!game.gameOver) requestAnimationFrame(animate)
+    if (!game.gameOver) {
+      requestAnimationFrame(animate)
+    } else {
+      window.addEventListener('keydown', function (e) {
+        if (e.code === 'Space') {
+          window.location.reload()
+        }
+      })
+    }
     // setTimeout(requestAnimationFrame(animate), 1000)
   }
   animate(0)
