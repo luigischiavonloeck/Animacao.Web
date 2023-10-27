@@ -23,14 +23,14 @@ window.addEventListener('load', function () {
       this.ui = new UI(this)
       this.enemies = []
       this.enemyTimer = 0
-      this.enemyInterval = 5000
+      this.enemyInterval = 2000
       this.debug = false
       this.score = 0
       this.fontColor = 'black'
       this.player.currentState = this.player.states[0]
       this.player.currentState.enter()
       this.time = 0
-      this.maxTime = 2000
+      this.maxTime = 5000
       this.gameOver = false
     }
     update(deltaTime) {
@@ -89,7 +89,7 @@ window.addEventListener('load', function () {
     game.update(deltaTime)
     game.draw(ctx)
 
-    requestAnimationFrame(animate)
+    if (!game.gameOver) requestAnimationFrame(animate)
     // setTimeout(requestAnimationFrame(animate), 1000)
   }
   animate(0)

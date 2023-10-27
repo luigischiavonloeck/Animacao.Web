@@ -34,9 +34,9 @@ export class Player {
     this.currentState.handleInput(input)
     // movimento horizontal
     this.x += this.speed
-    if (input.includes('d')) {
+    if (input.includes('d') && this.currentState !== this.states[5]) {
       this.speed = this.maxSpeed
-    } else if (input.includes('a')) {
+    } else if (input.includes('a')&& this.currentState !== this.states[5]) {
       this.speed = -this.maxSpeed
     } else {
       this.speed = 0
