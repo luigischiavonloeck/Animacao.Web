@@ -1,18 +1,21 @@
 export class InputHandler {
-  constructor() {
+  constructor(game) {
+    this.game = game
     this.keys = []
     window.addEventListener('keydown', event => {
+      console.log(event.key)
       if (
         (event.key === 's' ||
           event.key === 'w' ||
           event.key === 'a' ||
           event.key === 'd' ||
-          event.key === 'c') &&
+          event.key === ' ') &&
         this.keys.indexOf(event.key) === -1
       ) {
         this.keys.push(event.key)
+      } else if (event.key === 'h') {
+        this.game.debug = !this.game.debug
       }
-      console.log(event.key, this.keys)
     })
     window.addEventListener('keyup', event => {
       const index = this.keys.indexOf(event.key)
