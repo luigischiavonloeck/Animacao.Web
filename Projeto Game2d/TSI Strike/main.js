@@ -1,24 +1,35 @@
-import './style.css'
-import javascriptLogo from './javascript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.js'
+import { Player } from './player.js'
+import { InputHandler } from './input.js'
 
-document.querySelector('#app').innerHTML = `
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
-  </div>
-`
+window.addEventListener('load', function () {
+  const canvas = document.getElementById('canvas1')
+  const ctx = canvas.getContext('2d')
+  canvas.width = 600
+  canvas.height = 600
 
-setupCounter(document.querySelector('#counter'))
+  class Game {
+    constructor(width, height) {
+      this.width = width
+      this.height = height
+      this.player = new Player(this)
+      this.input = new InputHandler()
+    }
+    update() {
+      this.player.update(this.input.keys)
+    }
+    draw(context) {
+      this.player.draw(context)
+    }
+  }
+
+  const game = new Game(canvas.width, canvas.height)
+  console.log(game)
+
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
+    game.update()
+    game.draw(ctx)
+    requestAnimationFrame(animate)
+  }
+  animate()
+})
