@@ -1,3 +1,4 @@
+// import { ctInput, trInput } from './script.js';
 import { Player } from './player.js'
 import { InputHandler } from './input.js'
 import { Background } from './background.js'
@@ -9,6 +10,15 @@ window.addEventListener('load', function () {
   const ctx = canvas.getContext('2d')
   canvas.width = 800
   canvas.height = 793
+
+  // ctInput.value = true
+
+  // if (ctInput.value === 'true') {
+  //   document.getElementById('player').src='player.png'
+  // } else if (trInput.value === 'true') {
+  //   document.getElementById('player').src='player2.png'
+  // }
+  document.getElementById('player').src='player.png'
 
   class Game {
     constructor(width, height) {

@@ -1,0 +1,190 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Press Start 2P', cursive;
+  color: azure;
+}
+
+img {
+  animation: ctidle 0.5s infinite;
+  animation: tridle 0.5s;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(
+    0deg,
+    rgba(34, 49, 78, 1) 40%,
+    rgba(255, 162, 0, 1) 100%
+  );
+}
+
+.container {
+  width: 65vw;
+  height: 70vh;
+  background-color: #2a2a2a;
+  border: 5px solid white;
+  border-radius: 5px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.title {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.gameopt {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.opt {
+  display: flex;
+  width: 250px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.opt img {
+  margin-bottom: 10px;
+  z-index: 2;
+}
+
+.opt.tr {
+  /* border: 5px solid #ff1018; */
+  position: relative;
+}
+.opt.ct {
+  /* border: 5px solid #0081eb; */
+  position: relative;
+}
+
+.opt.ct img {
+  animation: ctidle 0.5s step-end infinite;
+}
+.opt.tr img {
+  animation: tridle 0.5s step-end infinite;
+}
+
+.opt.ct:hover img {
+  animation: cthover 0.5s infinite;
+}
+
+.opt.tr:hover img {
+  animation: trhover 0.4s infinite;
+}
+
+.opt p {
+  z-index: 2;
+  font-size: 1.5rem;
+  text-shadow: -1px 1px 0 #ffffff, 1px 1px 0 #ffffff, 1px -1px 0 #ffffff,
+    -1px -1px 0 #ffffff;
+}
+
+.tr p {
+  color: #ff1018;
+}
+
+.opt.tr:hover p {
+  color: #85080c;
+  transition: 300ms;
+}
+
+.ct p {
+  color: #0081eb;
+}
+
+.opt.ct:hover p {
+  color: #165588;
+  transition: 300ms;
+}
+
+
+.opt.ct:hover {
+  transform: translateX(-30%) scale(1.15);
+  transition: 1s;
+}
+
+.gameopt:has(.opt.ct:hover) .opt.tr {
+  opacity: 10%;
+  transition: 1s;
+}
+
+.opt.tr:hover {
+  transform: translateX(30%) scale(1.15);
+  transition: 1s;
+}
+
+.gameopt:has(.opt.tr:hover) .opt.ct {
+  opacity: 10%;
+  transition: 1s;
+}
+
+
+#border {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  border: none;
+  opacity: 0.8;
+  /* border-radius: 10px; */
+  z-index: 0;
+  stroke-dashoffset: 1186px;
+  stroke-dasharray: 1186px;
+  -webkit-transition: stroke-dashoffset 0.5s
+  cubic-bezier(0.455, 0.03, 0.515, 0.955) 0s;
+  transition: stroke-dashoffset 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955) 0s;
+}
+
+.tr.opt:hover #border,
+.ct.opt:hover #border,
+.ct.opt:has(input[value='true']) #border,
+.tr.opt:has(input[value='true']) #border {
+  stroke-dashoffset: 0;
+}
+
+.ml6 {
+  position: relative;
+  align-self: center;
+  width: fit-content;
+  text-align: center;
+  font-weight: 900;
+  font-size: 2.5em;
+}
+
+.ml6 .letter {
+  display: inline-block;
+  line-height: 1em;
+  pointer-events: none;
+}
+
+.letters:hover {
+  cursor: pointer;
+  text-shadow: 3px 3px 0px #00aeffb6;
+  transition: 300ms;
+}
+
+#play:active {
+  transition: 300ms;
+  transform: translate(3px, 3px);
+}
+
+#play:active .letter {
+  transition: 300ms;
+  color: rgba(255, 162, 0, 0.75);
+  text-shadow: none;
+}
