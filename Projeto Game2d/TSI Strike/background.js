@@ -1,7 +1,7 @@
-import { loadImage } from "./loadAsset"
+import { loadImage } from './loadAsset'
 
 class Layer {
-  constructor(game,width,height,speedModifier, image){
+  constructor(game, width, height, speedModifier, image) {
     this.game = game
     this.width = width
     this.height = height
@@ -10,38 +10,72 @@ class Layer {
     this.x = 0
     this.y = 0
   }
-  update(){
-    if (this.x < -this.width){
+  update() {
+    if (this.x < -this.width) {
       this.x = 0
     } else {
       this.x -= this.game.speed * this.speedModifier
     }
   }
-  draw(context){
+  draw(context) {
     context.drawImage(this.image, this.x, this.y, this.width, this.height)
-    context.drawImage(this.image, this.x + this.width, this.y, this.width, this.height)
+    context.drawImage(
+      this.image,
+      this.x + this.width,
+      this.y,
+      this.width,
+      this.height
+    )
   }
 }
 
 export class Background {
-  constructor(game){
+  constructor(game) {
     this.game = game
     this.width = 1667
     this.height = 793
-    this.layerImage = 1
+    this.layerMax = 0
+    this.velocity = 0.2
     this.backgroundLayers = []
-    this.background = 'forest1'
+    this.background = 'gardens'
 
-    // loop infinito no load
-    // while (this.layerImage != null){
-    //   loadImage('./background/'+ this.background + "/layer" + (this.backgroundLayers.length + 1) + ".png").then(img => {
-    //     this.layerImage = img
-    //     this.backgroundLayers.push(new Layer(this.game, this.width, this.height, this.backgroundLayers.length * 0.2, this.layerImage))
-    //   }).catch(err => {
-    //     this.layerImage = null
-    //   })
-    // }
-    
+    switch (this.background) {
+      case 'forest1':
+        this.layerMax = 12
+        this.velocity = 1/(this.layerMax-2)
+        break
+      case 'forest2':
+        this.layerMax = 6
+        this.velocity = 1/(this.layerMax-1)
+        break
+      case 'desert':
+        this.layerMax = 5
+        this.velocity = 1/(this.layerMax-1)
+        break
+      case 'gardens':
+        this.layerMax = 7
+        this.velocity = 1/(this.layerMax-1)
+        break
+    }
+
+    for (let i = 1; i <= this.layerMax; i++) {
+      this.img = new Image()
+      this.img.src = "./background/" + this.background + "/layer" + i + ".png"
+      this.backgroundLayers.push(
+        new Layer(
+          this.game,
+          this.width,
+          this.height,
+          (i - 1) * this.velocity,
+          this.img
+        )
+      )
+    }
+
+    console.log(this.backgroundLayers)
+
+    // "./background/" + this.background + "/layer" + i + ".png"
+
     // if (this.layerImage != null){
     //   this.backgroundLayers.push(new Layer(this.game, this.width, this.height, this.backgroundLayers.length * 0.2, this.layerImage))
     // }
@@ -56,12 +90,11 @@ export class Background {
     // this.layer4 = new Layer(this.game, this.width, this.height, 0.8, this.layer4image)
     // this.layer5 = new Layer(this.game, this.width, this.height, 1, this.layer5image)
     // this.backgroundLayers = [this.layer1, this.layer2, this.layer3, this.layer4, this.layer5]
-
   }
-  update(){
+  update() {
     this.backgroundLayers.forEach(layer => layer.update())
   }
-  draw(context){
+  draw(context) {
     this.backgroundLayers.forEach(layer => layer.draw(context))
   }
 }

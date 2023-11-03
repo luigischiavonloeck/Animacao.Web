@@ -11,12 +11,34 @@ window.addEventListener('load', function () {
   canvas.width = 800
   canvas.height = 793
 
-  // this.imgUrl = imgUrl
-  // loadImage(this.imgUrl).then(img => {
-  //   this.img = img
-  //   this.cellWidth = img.naturalWidth / this.totalSprites + 3.5
-  //   console.log('W:' + this.cellWidth)
-  // })
+  // background forest1
+  for (let i = 1; i < 13; i++) {
+    loadImage('./background/forest1/layer' + i + '.png')
+  }
+
+  // background forest2
+  for (let i = 1; i < 7; i++) {
+    loadImage('./background/forest2/layer' + i + '.png')
+  }
+
+  // background desert
+  for (let i = 1; i < 6; i++) {
+    loadImage('./background/desert/layer' + i + '.png')
+  }
+
+  // background gardens
+  for (let i = 1; i < 8; i++) {
+    loadImage('./background/gardens/layer' + i + '.png')
+  }
+
+  // enemies
+  loadImage('./enemies/enemy_fly2.png')
+  loadImage('./enemies/enemy_plant2.png')
+  loadImage('./enemies/enemy_spider.png')
+
+  // player
+  loadImage('./player.png')
+  loadImage('./player2.png')
 
   class Game {
     constructor(width, height) {
@@ -31,7 +53,7 @@ window.addEventListener('load', function () {
       this.ui = new UI(this)
       this.enemies = []
       this.enemyTimer = 0
-      this.enemyInterval = 2000
+      this.enemyInterval = 1000
       this.debug = false
       this.score = 0
       this.fontColor = 'white'

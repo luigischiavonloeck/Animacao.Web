@@ -16,7 +16,9 @@ export class Player {
     this.y = this.game.height - this.height - this.game.groundMargin
     this.vy = 0
     this.weight = 1
-    this.image = document.getElementById('player')
+    const img = new Image()
+    img.src = './player2.png'
+    this.image = img
     this.frameX = 0
     this.frameY = 0
     this.maxFrame
