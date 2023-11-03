@@ -1,4 +1,4 @@
-// import { ctInput, trInput } from './script.js';
+import { loadImage, loadAudio } from './loadAsset.js'
 import { Player } from './player.js'
 import { InputHandler } from './input.js'
 import { Background } from './background.js'
@@ -11,14 +11,12 @@ window.addEventListener('load', function () {
   canvas.width = 800
   canvas.height = 793
 
-  // ctInput.value = true
-
-  // if (ctInput.value === 'true') {
-  //   document.getElementById('player').src='player.png'
-  // } else if (trInput.value === 'true') {
-  //   document.getElementById('player').src='player2.png'
-  // }
-  document.getElementById('player').src='player.png'
+  // this.imgUrl = imgUrl
+  // loadImage(this.imgUrl).then(img => {
+  //   this.img = img
+  //   this.cellWidth = img.naturalWidth / this.totalSprites + 3.5
+  //   console.log('W:' + this.cellWidth)
+  // })
 
   class Game {
     constructor(width, height) {
@@ -33,7 +31,7 @@ window.addEventListener('load', function () {
       this.ui = new UI(this)
       this.enemies = []
       this.enemyTimer = 0
-      this.enemyInterval = 1000
+      this.enemyInterval = 2000
       this.debug = false
       this.score = 0
       this.fontColor = 'white'
@@ -91,7 +89,7 @@ window.addEventListener('load', function () {
     lastTime = timeStamp
 
     sumFrame += deltaTime
-    if (sumFrame > deltaTime * 2.4){
+    if (sumFrame > deltaTime * 2.4) {
       // console.log(deltaTime)
       ctx.clearRect(0, 0, canvas.width, canvas.height)
       game.update(deltaTime)

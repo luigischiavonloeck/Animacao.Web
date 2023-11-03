@@ -3,7 +3,7 @@ const states = {
   RUNNING: 1,
   JUMPING: 2,
   FALLING: 3,
-  ROLLING: 4,
+  ATTACKING: 4,
   HIT: 5
 }
 
@@ -27,7 +27,14 @@ export class Sitting extends State {
     if (input.includes('a') || input.includes('d')) {
       this.player.setState(states.RUNNING, 1)
     } else if (input.includes(' ')) {
-      this.player.setState(states.ROLLING, 2)
+      if (!this.player.isAttacking) {
+        this.player.isAttacking = true
+        this.player.setState(states.ATTACKING, 2)
+      }
+    } else if (!input.includes(' ')) {
+      this.player.isAttacking = false
+    } else if (input.includes('w')) {
+      this.player.setState(states.JUMPING, 1)
     }
   }
 }
@@ -48,7 +55,12 @@ export class Running extends State {
     } else if (input.includes('w')) {
       this.player.setState(states.JUMPING, 1)
     } else if (input.includes(' ')) {
-      this.player.setState(states.ROLLING, 2)
+      if (!this.player.isAttacking) {
+        this.player.isAttacking = true
+        this.player.setState(states.ATTACKING, 2)
+      }
+    } else if (!input.includes(' ')) {
+      this.player.isAttacking = false
     }
   }
 }
@@ -70,7 +82,12 @@ export class Jumping extends State {
     if (this.player.vy > this.player.weight) {
       this.player.setState(states.FALLING, 1)
     } else if (input.includes(' ')) {
-      this.player.setState(states.ROLLING, 2)
+      if (!this.player.isAttacking) {
+        this.player.isAttacking = true
+        this.player.setState(states.ATTACKING, 2)
+      }
+    } else if (!input.includes(' ')) {
+      this.player.isAttacking = false
     }
   }
 }
@@ -92,9 +109,9 @@ export class Falling extends State {
   }
 }
 
-export class Rolling extends State {
+export class Attacking extends State {
   constructor(player) {
-    super('ROLLING')
+    super('ATTACKING')
     this.player = player
   }
   enter() {
@@ -103,11 +120,17 @@ export class Rolling extends State {
     this.player.frameY = 0
   }
   handleInput(input) {
-    if (!input.includes(' ') && this.player.onGround()) {
+    if (this.player.frameX >= this.player.maxFrame && this.player.onGround()) {
       this.player.setState(states.RUNNING, 1)
-    } else if (!input.includes(' ') && !this.player.onGround()) {
+    } else if (
+      this.player.frameX >= this.player.maxFrame &&
+      !this.player.onGround()
+    ) {
       this.player.setState(states.FALLING, 1)
-    } else if (input.includes('w') && this.player.onGround() && input.includes(' ')) {
+    } else if (
+      input.includes('w') &&
+      this.player.onGround()
+    ) {
       this.player.vy -= 25
     }
   }
