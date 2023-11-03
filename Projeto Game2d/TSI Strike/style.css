@@ -14,10 +14,6 @@
   max-height: 100%;
 }
 
-#player, #layer1, #layer2, #layer3, #layer4, #layer5, #layer6, #layer7, #layer8, #layer9, #layer10, #layer11, #layer12, #enemy_fly, #enemy_plant, #enemy_spider_big {
-  display: none;
-}
-
 body {
   background-image: url("background.png");
   background-repeat: no-repeat;

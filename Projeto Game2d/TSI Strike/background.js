@@ -37,7 +37,7 @@ export class Background {
     this.layerMax = 0
     this.velocity = 0.2
     this.backgroundLayers = []
-    this.background = 'gardens'
+    this.background = game.selectedBackground
 
     switch (this.background) {
       case 'forest1':

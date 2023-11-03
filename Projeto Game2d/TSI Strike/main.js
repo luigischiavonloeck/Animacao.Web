@@ -11,6 +11,30 @@ window.addEventListener('load', function () {
   canvas.width = 800
   canvas.height = 793
 
+  const selectionScreen = document.getElementById('selectionScreen')
+  const characterSelect = document.getElementById('characterSelect')
+  const backgroundSelect = document.getElementById('backgroundSelect')
+  const startButton = document.getElementById('startButton')
+
+  let game
+
+  startButton.addEventListener('click', () => {
+    const selectedCharacter = characterSelect.value
+    const selectedBackground = backgroundSelect.value
+
+    // Ocultar a tela de seleção
+    selectionScreen.style.display = 'none'
+
+    // Iniciar o jogo com as escolhas do usuário
+    game = new Game(
+      canvas.width,
+      canvas.height,
+      selectedCharacter,
+      selectedBackground
+    )
+    animate(0)
+  })
+
   // background forest1
   for (let i = 1; i < 13; i++) {
     loadImage('./background/forest1/layer' + i + '.png')
@@ -41,9 +65,11 @@ window.addEventListener('load', function () {
   loadImage('./player2.png')
 
   class Game {
-    constructor(width, height) {
+    constructor(width, height, selectedCharacter, selectedBackground) {
       this.width = width
       this.height = height
+      this.selectedCharacter = selectedCharacter
+      this.selectedBackground = selectedBackground
       this.groundMargin = 80
       this.speed = 0
       this.maxSpeed = 2
@@ -101,8 +127,8 @@ window.addEventListener('load', function () {
     }
   }
 
-  const game = new Game(canvas.width, canvas.height)
-  console.log(game)
+  // const game = new Game(canvas.width, canvas.height)
+  // console.log(game)
   let lastTime = 0
   let sumFrame = 10
 
@@ -129,5 +155,5 @@ window.addEventListener('load', function () {
     }
     // setTimeout(requestAnimationFrame(animate), 1000)
   }
-  animate(0)
+  // animate(0)
 })

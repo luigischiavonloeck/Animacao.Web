@@ -17,7 +17,7 @@ export class Player {
     this.vy = 0
     this.weight = 1
     const img = new Image()
-    img.src = './player2.png'
+    img.src = game.selectedCharacter
     this.image = img
     this.frameX = 0
     this.frameY = 0

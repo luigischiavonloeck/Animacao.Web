@@ -8,6 +8,24 @@
     <title>TSI Strike</title>
   </head>
   <body>
+    <div id="selectionScreen">
+      <h2>Select Character and Background</h2>
+      <label for="characterSelect">Select Character:</label>
+      <select id="characterSelect">
+        <option value="./player.png">Player 1</option>
+        <option value="./player2.png">Player 2</option>
+      </select>
+
+      <label for="backgroundSelect">Select Background:</label>
+      <select id="backgroundSelect">
+        <option value="forest1">Forest 1</option>
+        <option value="forest2">Forest 2</option>
+        <option value="gardens">Gardens</option>
+        <option value="desert">Desert</option>
+      </select>
+
+      <button id="startButton">Start Game</button>
+    </div>
     <canvas id="canvas1"></canvas>
     <script type="module" src="./main.js"></script>
   </body>
