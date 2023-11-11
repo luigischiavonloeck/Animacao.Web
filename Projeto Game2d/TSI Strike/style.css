@@ -15,9 +15,81 @@
 }
 
 body {
-  background-image: url("background.png");
+  background-image: url('background.png');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
+}
+
+#selectionScreen {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: bisque;
+  border-radius: 5px;
+  padding: 15px;
+  font-family: monospace;
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+#selectionScreen h2 {
+  font-size: 28px;
+  text-align: center;
+  margin: 15px;
+}
+
+p {
+  font-size: 22px;
+  text-align: center;
+}
+
+.options {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+}
+
+.options input {
+  display: none;
+}
+
+.options img {
+  margin-top: 5px;
+  height: 100px;
+  padding: 5px;
+}
+
+.options input[type="radio"][name="background"]:checked + label img {
+  transition: 1s;
+  /* border: solid 2px red; */
+  background-color: red;
+}
+.options input[type="radio"][name="player"]:checked + label img {
+  border: 3px solid red;
+}
+
+#startButton {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border: 2px solid red;
+  border-radius: 5px;
+  color: red;
+  background-color: #fff;
+  transition: 0.3s;
+}
+
+#startButton:hover {
+  background-color: red;
+  color: white;
 }

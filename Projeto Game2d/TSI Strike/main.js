@@ -12,15 +12,30 @@ window.addEventListener('load', function () {
   canvas.height = 793
 
   const selectionScreen = document.getElementById('selectionScreen')
-  const characterSelect = document.getElementById('characterSelect')
-  const backgroundSelect = document.getElementById('backgroundSelect')
+  // const characterSelect = document.getElementById('characterSelect')
+  const characterSelect = document.querySelectorAll('input[name="player"]')
+  const backgroundSelect = document.querySelectorAll('input[name="background"]')
   const startButton = document.getElementById('startButton')
 
   let game
+  let selectedCharacter
+  let selectedBackground 
 
   startButton.addEventListener('click', () => {
-    const selectedCharacter = characterSelect.value
-    const selectedBackground = backgroundSelect.value
+    console.log(characterSelect)
+    characterSelect.forEach(input => {
+      if (input.checked) {
+        selectedCharacter = input.id
+      }
+    })
+    backgroundSelect.forEach(input => {
+      if (input.checked) {
+        selectedBackground = input.id
+      }
+    })
+  
+    // const selectedCharacter = characterSelect.value
+    // const selectedBackground = backgroundSelect.value
 
     // Ocultar a tela de seleção
     selectionScreen.style.display = 'none'
