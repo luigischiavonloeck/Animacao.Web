@@ -46,14 +46,17 @@ export class Background {
         break
       case 'forest2':
         this.layerMax = 6
+        this.game.groundMargin = 100
         this.velocity = 1/(this.layerMax-1)
         break
       case 'desert':
         this.layerMax = 5
+        this.game.groundMargin = 40
         this.velocity = 1/(this.layerMax-1)
         break
       case 'gardens':
         this.layerMax = 7
+        this.game.groundMargin = 60
         this.velocity = 1/(this.layerMax-1)
         break
     }

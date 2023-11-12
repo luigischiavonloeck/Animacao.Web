@@ -121,8 +121,13 @@ export class Player {
         enemy.markedForDeletion = true
         if (this.currentState === this.states[4]) {
           this.game.score++
+          this.game.sound.enemy.pause()
+          this.game.sound.enemy.currentTime = 0
+          this.game.sound.enemy.play()
         } else {
+          this.game.lifes--
           this.setState(5, 0)
+          this.game.sound.hurt.play()
         }
       }
     })

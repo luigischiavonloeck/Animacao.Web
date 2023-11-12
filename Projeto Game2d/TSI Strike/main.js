@@ -19,10 +19,9 @@ window.addEventListener('load', function () {
 
   let game
   let selectedCharacter
-  let selectedBackground 
+  let selectedBackground
 
   startButton.addEventListener('click', () => {
-    console.log(characterSelect)
     characterSelect.forEach(input => {
       if (input.checked) {
         selectedCharacter = input.id
@@ -33,7 +32,7 @@ window.addEventListener('load', function () {
         selectedBackground = input.id
       }
     })
-  
+
     // const selectedCharacter = characterSelect.value
     // const selectedBackground = backgroundSelect.value
 
@@ -79,6 +78,14 @@ window.addEventListener('load', function () {
   loadImage('./player.png')
   loadImage('./player2.png')
 
+  // sounds
+  loadAudio('./sounds/theme.mp3')
+  loadAudio('./sounds/hurt.mp3')
+  loadAudio('./sounds/loss.mp3')
+  loadAudio('./sounds/win.mp3')
+  loadAudio('./sounds/enemy.mp3')
+
+
   class Game {
     constructor(width, height, selectedCharacter, selectedBackground) {
       this.width = width
@@ -102,11 +109,22 @@ window.addEventListener('load', function () {
       this.player.currentState.enter()
       this.time = 0
       this.maxTime = 20000
+      this.lifes = 3
       this.gameOver = false
+      this.sound = {
+        theme: new Audio('./sounds/theme.mp3'),
+        hurt: new Audio('./sounds/hurt.mp3'),
+        loss: new Audio('./sounds/loss.mp3'),
+        win: new Audio('./sounds/win.mp3'),
+        enemy: new Audio('./sounds/enemy.mp3')
+      }
+      this.sound.theme.loop = true
+      this.sound.theme.volume = 0.25
+      this.sound.theme.play()
     }
     update(deltaTime) {
       this.time += deltaTime
-      if (this.time > this.maxTime) {
+      if (this.time > this.maxTime || this.lifes == 0) {
         this.gameOver = true
       }
       this.background.update()
@@ -163,7 +181,8 @@ window.addEventListener('load', function () {
       requestAnimationFrame(animate)
     } else {
       window.addEventListener('keydown', function (e) {
-        if (e.code === 'Space') {
+        console.log(e.code)
+        if (e.code === 'Enter') {
           window.location.reload()
         }
       })
