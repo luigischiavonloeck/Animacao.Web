@@ -19,6 +19,7 @@ export class UI {
 
     //game over
     if (this.game.gameOver){
+      this.game.sound.theme.pause()
       context.textAlign = 'center'
       context.font = `${this.fontSize * 2}px ${this.fontFamily}`
       context.fillStyle = '#000b'

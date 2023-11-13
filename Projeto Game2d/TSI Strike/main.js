@@ -49,41 +49,43 @@ window.addEventListener('load', function () {
     animate(0)
   })
 
-  // background forest1
-  for (let i = 1; i < 13; i++) {
-    loadImage('./background/forest1/layer' + i + '.png')
-  }
+  // Promise.all([
 
-  // background forest2
-  for (let i = 1; i < 7; i++) {
-    loadImage('./background/forest2/layer' + i + '.png')
-  }
-
-  // background desert
-  for (let i = 1; i < 6; i++) {
-    loadImage('./background/desert/layer' + i + '.png')
-  }
-
-  // background gardens
-  for (let i = 1; i < 8; i++) {
-    loadImage('./background/gardens/layer' + i + '.png')
-  }
-
-  // enemies
-  loadImage('./enemies/enemy_fly2.png')
-  loadImage('./enemies/enemy_plant2.png')
-  loadImage('./enemies/enemy_spider.png')
-
-  // player
-  loadImage('./player.png')
-  loadImage('./player2.png')
-
-  // sounds
-  loadAudio('./sounds/theme.mp3')
-  loadAudio('./sounds/hurt.mp3')
-  loadAudio('./sounds/loss.mp3')
-  loadAudio('./sounds/win.mp3')
-  loadAudio('./sounds/enemy.mp3')
+    // background forest1
+    for (let i = 1; i < 13; i++) {
+      loadImage('./background/forest1/layer' + i + '.png')
+    }
+  
+    // background forest2
+    for (let i = 1; i < 7; i++) {
+      loadImage('./background/forest2/layer' + i + '.png')
+    }
+  
+    // background desert
+    for (let i = 1; i < 6; i++) {
+      loadImage('./background/desert/layer' + i + '.png')
+    }
+  
+    // background gardens
+    for (let i = 1; i < 8; i++) {
+      loadImage('./background/gardens/layer' + i + '.png')
+    }
+  
+    // enemies
+    loadImage('./enemies/enemy_fly2.png')
+    loadImage('./enemies/enemy_plant2.png')
+    loadImage('./enemies/enemy_spider.png')
+  
+    // player
+    loadImage('./player.png')
+    loadImage('./player2.png')
+  
+    // sounds
+    loadAudio('./sounds/theme.mp3')
+    loadAudio('./sounds/hurt.mp3')
+    loadAudio('./sounds/loss.mp3')
+    loadAudio('./sounds/win.mp3')
+    loadAudio('./sounds/enemy.mp3')
 
 
   class Game {
