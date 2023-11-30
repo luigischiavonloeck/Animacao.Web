@@ -124,7 +124,7 @@ export class Player {
           this.game.sound.enemy.pause()
           this.game.sound.enemy.currentTime = 0
           this.game.sound.enemy.play()
-        } else {
+        } else if (this.currentState !== this.states[5]){
           this.game.lifes--
           this.setState(5, 0)
           this.game.sound.hurt.play()

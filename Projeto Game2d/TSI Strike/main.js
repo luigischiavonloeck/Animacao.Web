@@ -36,10 +36,8 @@ window.addEventListener('load', function () {
     // const selectedCharacter = characterSelect.value
     // const selectedBackground = backgroundSelect.value
 
-    // Ocultar a tela de seleção
     selectionScreen.style.display = 'none'
 
-    // Iniciar o jogo com as escolhas do usuário
     game = new Game(
       canvas.width,
       canvas.height,
@@ -51,42 +49,41 @@ window.addEventListener('load', function () {
 
   // Promise.all([
 
-    // background forest1
-    for (let i = 1; i < 13; i++) {
-      loadImage('./background/forest1/layer' + i + '.png')
-    }
-  
-    // background forest2
-    for (let i = 1; i < 7; i++) {
-      loadImage('./background/forest2/layer' + i + '.png')
-    }
-  
-    // background desert
-    for (let i = 1; i < 6; i++) {
-      loadImage('./background/desert/layer' + i + '.png')
-    }
-  
-    // background gardens
-    for (let i = 1; i < 8; i++) {
-      loadImage('./background/gardens/layer' + i + '.png')
-    }
-  
-    // enemies
-    loadImage('./enemies/enemy_fly2.png')
-    loadImage('./enemies/enemy_plant2.png')
-    loadImage('./enemies/enemy_spider.png')
-  
-    // player
-    loadImage('./player.png')
-    loadImage('./player2.png')
-  
-    // sounds
-    loadAudio('./sounds/theme.mp3')
-    loadAudio('./sounds/hurt.mp3')
-    loadAudio('./sounds/loss.mp3')
-    loadAudio('./sounds/win.mp3')
-    loadAudio('./sounds/enemy.mp3')
+  // background forest1
+  for (let i = 1; i < 13; i++) {
+    loadImage('./background/forest1/layer' + i + '.png')
+  }
 
+  // background forest2
+  for (let i = 1; i < 7; i++) {
+    loadImage('./background/forest2/layer' + i + '.png')
+  }
+
+  // background desert
+  for (let i = 1; i < 6; i++) {
+    loadImage('./background/desert/layer' + i + '.png')
+  }
+
+  // background gardens
+  for (let i = 1; i < 8; i++) {
+    loadImage('./background/gardens/layer' + i + '.png')
+  }
+
+  // enemies
+  loadImage('./enemies/enemy_fly2.png')
+  loadImage('./enemies/enemy_plant2.png')
+  loadImage('./enemies/enemy_spider.png')
+
+  // player
+  loadImage('./player.png')
+  loadImage('./player2.png')
+
+  // sounds
+  loadAudio('./sounds/theme.mp3')
+  loadAudio('./sounds/hurt.mp3')
+  loadAudio('./sounds/loss.mp3')
+  loadAudio('./sounds/win.mp3')
+  loadAudio('./sounds/enemy.mp3')
 
   class Game {
     constructor(width, height, selectedCharacter, selectedBackground) {
@@ -110,7 +107,7 @@ window.addEventListener('load', function () {
       this.player.currentState = this.player.states[0]
       this.player.currentState.enter()
       this.time = 0
-      this.maxTime = 20000
+      this.maxTime = 23000
       this.lifes = 3
       this.gameOver = false
       this.sound = {
@@ -126,6 +123,7 @@ window.addEventListener('load', function () {
     }
     update(deltaTime) {
       this.time += deltaTime
+      //console.log(this.time)
       if (this.time > this.maxTime || this.lifes == 0) {
         this.gameOver = true
       }
@@ -133,18 +131,20 @@ window.addEventListener('load', function () {
       this.player.update(this.input.keys, deltaTime)
 
       // inimigos
-      if (this.enemyTimer > this.enemyInterval) {
-        this.enemyTimer = 0
-        this.addEnemy()
-      } else {
-        this.enemyTimer += deltaTime
-      }
-      this.enemies.forEach(enemy => {
-        enemy.update(deltaTime)
-        if (enemy.markedForDeletion) {
-          this.enemies.splice(this.enemies.indexOf(enemy), 1)
+      if (this.time > 3000) {
+        if (this.enemyTimer > this.enemyInterval) {
+          this.enemyTimer = 0
+          this.addEnemy()
+        } else {
+          this.enemyTimer += deltaTime
         }
-      })
+        this.enemies.forEach(enemy => {
+          enemy.update(deltaTime)
+          if (enemy.markedForDeletion) {
+            this.enemies.splice(this.enemies.indexOf(enemy), 1)
+          }
+        })
+      }
     }
     draw(context) {
       this.background.draw(context)
@@ -173,7 +173,7 @@ window.addEventListener('load', function () {
 
     sumFrame += deltaTime
     if (sumFrame > deltaTime * 2.4) {
-      // console.log(deltaTime)
+      //console.log(sumFrame)
       ctx.clearRect(0, 0, canvas.width, canvas.height)
       game.update(deltaTime)
       game.draw(ctx)
