@@ -10,7 +10,9 @@ import {
 export class Player {
   constructor(game) {
     this.game = game
-    this.width = 176
+    //this.width = 176
+    //this.height = 182.6
+    this.width = 136
     this.height = 182.6
     this.x = 0
     this.y = this.game.height - this.height - this.game.groundMargin
@@ -92,7 +94,7 @@ export class Player {
     }
     context.drawImage(
       this.image,
-      this.frameX * this.width,
+      this.frameX * (this.width + 40),
       this.frameY * this.height,
       this.width,
       this.height,
@@ -124,7 +126,7 @@ export class Player {
           this.game.sound.enemy.pause()
           this.game.sound.enemy.currentTime = 0
           this.game.sound.enemy.play()
-        } else if (this.currentState !== this.states[5]){
+        } else if (this.currentState !== this.states[5]) {
           this.game.lifes--
           this.setState(5, 0)
           this.game.sound.hurt.play()

@@ -91,7 +91,8 @@ export class ClimbingEnemy extends Enemy {
   constructor(game) {
     super()
     this.game = game
-    this.width = 217.3
+    //this.width = 217.3
+    this.width = 97.3
     this.height = 144
     this.x = this.game.width
     this.y = Math.random() * this.game.height * 0.5
@@ -112,7 +113,21 @@ export class ClimbingEnemy extends Enemy {
     }
   }
   draw(context) {
-    super.draw(context)
+    //super.draw(context)
+    if (this.game.debug) {
+      context.strokeRect(this.x, this.y, this.width, this.height)
+    }
+    context.drawImage(
+      this.image,
+      this.frameX * (this.width + 120) + 60,
+      0,
+      this.width,
+      this.height,
+      this.x,
+      this.y,
+      this.width,
+      this.height
+    )
     context.beginPath()
     context.moveTo(this.x + this.width / 2, 0)
     context.lineTo(this.x + this.width / 2, this.y + 50)
