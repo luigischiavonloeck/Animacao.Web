@@ -3,6 +3,7 @@ class Enemy {
     this.frameX = 0
     this.frameY = 0
     this.fps = 20
+
     this.frameInterval = 1000 / this.fps
     this.frameTimer = 0
     this.markedForDeletion = false
@@ -53,7 +54,8 @@ export class FlyingEnemy extends Enemy {
     this.height = 96
     this.x = this.game.width + Math.random() * this.game.width * 0.5
     this.y = Math.random() * this.game.height * 0.5
-    this.speedX = Math.random() + 1
+    this.speedX = Math.random() + 1 + this.game.dif*5
+    //this.speedX = 10
     this.speedY = 0
     this.maxFrame = 3
     // const img = Math.random() > 0.5 ? 'enemy_fly' : 'enemy_bat'
@@ -100,7 +102,9 @@ export class ClimbingEnemy extends Enemy {
     img.src = './enemies/enemy_spider.png'
     this.image = img
     this.speedX = 0
-    this.speedY = Math.random() > 0.5 ? 1 : -1
+    //this.speedY = Math.random() > 0.5 ? 1 : -1
+    this.speedY = Math.random() > 0.5 ? this.game.dif + 3 : -this.game.dif - 3
+    //this.speedY = 5
     this.maxFrame = 2
   }
   update(deltaTime) {

@@ -107,7 +107,7 @@ window.addEventListener('load', function () {
       this.player.currentState = this.player.states[0]
       this.player.currentState.enter()
       this.time = 0
-      this.maxTime = 23000
+      this.maxTime = 33000
       this.lifes = 3
       this.gameOver = false
       this.sound = {
@@ -120,6 +120,8 @@ window.addEventListener('load', function () {
       this.sound.theme.loop = true
       this.sound.theme.volume = 0.25
       this.sound.theme.play()
+      this.dif = 0
+      this.scoreDif = 5
     }
     update(deltaTime) {
       this.time += deltaTime
@@ -144,6 +146,11 @@ window.addEventListener('load', function () {
             this.enemies.splice(this.enemies.indexOf(enemy), 1)
           }
         })
+      }
+
+      if (this.score == this.scoreDif){
+        this.scoreDif += 5 
+        this.dif++
       }
     }
     draw(context) {

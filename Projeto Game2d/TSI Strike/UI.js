@@ -24,7 +24,7 @@ export class UI {
     
     //tempo
     context.textAlign = 'right'
-    context.fillText(`Game Time: ${23 - Math.floor(this.game.time / 1000)}`, this.game.width - 20, 50)
+    context.fillText(`Game Time: ${33 - Math.floor(this.game.time / 1000)}`, this.game.width - 20, 50)
 
     //game over
     if (this.game.gameOver){
